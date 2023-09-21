@@ -1,0 +1,34 @@
+version: "3"
+services:
+  myapp:
+    image: my-laravel-app:latest  # Tag your image with a version (e.g., :latest)
+    build:
+      context: .
+    container_name: my-laravel-container
+    depends_on:
+      - mysql
+    ports:
+      - "8000:80"
+    volumes:
+      - myapp:/var/www/html/storage
+    environment:
+      - DB_HOST=mysql
+      - DB_PORT=3306
+      - DB_DATABASE=myapp
+      - DB_USERNAME=root
+      - DB_PASSWORD=root
+    command: ["sh", "-c", "sleep 30 && php /var/www/html/artisan migrate && apache2-foreground"]
+  mysql:
+    image: mysql:5.7
+    container_name: mysql-container
+    volumes:
+      - mysql:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: myapp
+
+volumes:
+  myapp:
+    driver: "local"
+  mysql:
+    driver: "local"
