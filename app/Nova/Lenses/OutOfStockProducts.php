@@ -28,7 +28,7 @@ class OutOfStockProducts extends Lens
     public static function query(LensRequest $request, $query)
     {
         return $request->withOrdering($request->withFilters(
-        $query->where('stock', '<=', 0)
+        $query->where('total_amount', '<=', 0)
         ));
     }
 

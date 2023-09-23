@@ -12,6 +12,7 @@ use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Select;
 use Laravel\Nova\Fields\HasMany;
 use App\Nova\Lenses\PendingOrdersLens;
+use App\Nova\Lenses\OutOfStockProducts;
 
 class Order extends Resource
 {
@@ -108,6 +109,7 @@ class Order extends Resource
     {
         return [
             new PendingOrdersLens,
+            new OutOfStockProducts
         ];
     }
 

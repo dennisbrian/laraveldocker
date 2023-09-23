@@ -163,7 +163,7 @@ return [
     */
 
     'brand' => [
-        'logo' => 'https://cdn.worldvectorlogo.com/logos/svg.svg',
+        'logo' => public_path('logo/svg.svg'),
         'colors' => [
             "400" => "600, 209, 205, 0.5"
             ,
